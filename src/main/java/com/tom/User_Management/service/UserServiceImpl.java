@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service // IT WILL AUTOMATICALLY CREATE A BEAN OF THIS CLASS SO CONTROLLERS (OR OTHER SERVICES) CAN
-         // INJECT IT.
+@Service // IT WILL AUTOMATICALLY CREATE A BEAN OF THIS CLASS SO CONTROLLERS (OR OTHER SERVICES) CAN INJECT IT.
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
@@ -23,7 +22,9 @@ public class UserServiceImpl implements UserService {
   @Override
   public User registerUser(User user) {
 
-    // CHECK FOR EXISTING EMAIL
+      System.out.println(">>> registerUser() called with: " + user);
+
+      // CHECK FOR EXISTING EMAIL
     userRepository.findByEmail(user.getEmail())
             .ifPresent(existing -> {
               throw new IllegalArgumentException("Email already exists!!");
@@ -37,20 +38,24 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User loginUser(String email, String password) {
-    return null;
+  public User loginUser(String name, String password) {
+      return null;
   }
 
   @Override
   public List<User> getAllUsers() {
-    return List.of();
+
+      return List.of();
   }
 
   @Override
   public User getUserByEmail(String email) {
-    return null;
+
+      return null;
   }
 
   @Override
-  public void deleteUser(Long id) {}
+  public void deleteUser(Long id) {
+
+  }
 }

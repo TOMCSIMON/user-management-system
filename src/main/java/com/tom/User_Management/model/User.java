@@ -1,6 +1,7 @@
 package com.tom.User_Management.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,7 @@ public class User {
   @Column(nullable = false) // REQUIRED FIELDS
   private String userName;
 
+  @Email
   @Column(unique = true) // EMAIL SHOULD UNIQUE
   private String email;
 
