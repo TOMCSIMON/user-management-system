@@ -23,18 +23,18 @@ public class User {
 
   @NotBlank(message = "Username is required")
   @Size(min = 3, max = 25, message = "Username must be between 3 and 25 characters")
-  @Column(nullable = false) // REQUIRED FIELDS
+  @Column(nullable = false, name = "user_name") // REQUIRED FIELDS
   private String userName;
 
   @Email(message = "Invalid Email")
   @NotBlank(message = "Email is required")
-  @Column(unique = true) // EMAIL SHOULD UNIQUE
+  @Column(unique = true, name = "email") // EMAIL SHOULD UNIQUE
   private String email;
 
 
   @NotBlank(message = "Password is required")
   @Size(min = 8, message = "Password must be at least 8 characters")
-  @Column(unique = true) // PASSWORD SHOULD UNIQUE
+  @Column(unique = true, name = "password") // PASSWORD SHOULD UNIQUE
   private String password;
 
   @Transient

@@ -56,16 +56,7 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/test-save")
-    @ResponseBody
-    public String testSave() {
-        User u = new User();
-        u.setUserName("testuser");
-        u.setEmail("test@example.com");
-        u.setPassword("123456");
-        userService.registerUser(u);  // Should save to DB
-        return "Saved";
-    }
+
 
 
 
