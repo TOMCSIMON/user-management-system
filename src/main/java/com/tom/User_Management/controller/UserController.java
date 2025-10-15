@@ -3,20 +3,19 @@ package com.tom.User_Management.controller;
 import com.tom.User_Management.model.User;
 import com.tom.User_Management.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller // TELLS SPRING THIS CLASS HANDLES WEB REQUESTS AND RETURNS HTML VIEWS
 public class UserController {
 
-    @Autowired
     private final UserService userService;
 
 
@@ -29,12 +28,12 @@ public class UserController {
     @GetMapping("/signup")
     public String SignupPage(Model model) {
         model.addAttribute("user", new User());
-        return "signup"; // matches signup.html in /templates
+        return "signup"; // MATCHES signup.html IN /TEMPLATES
     }
 
     @GetMapping("/login")
     public String loginPage() {
-        return "login";
+        return "login"; // MATCHES login.html IN /TEMPLATES
     }
 
 
@@ -46,8 +45,9 @@ public class UserController {
                                RedirectAttributes redirectAttributes
                                ) {
 
-        if(bindingResult.hasErrors()) {
+        System.out.println(">>> Received user from form: " + user);
 
+        if(bindingResult.hasErrors()) {
             return "signup";
         }
 
@@ -56,6 +56,16 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/test-save")
+    @ResponseBody
+    public String testSave() {
+        User u = new User();
+        u.setUserName("testuser");
+        u.setEmail("test@example.com");
+        u.setPassword("123456");
+        userService.registerUser(u);  // Should save to DB
+        return "Saved";
+    }
 
 
 

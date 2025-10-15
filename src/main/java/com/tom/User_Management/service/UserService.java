@@ -4,10 +4,11 @@ import com.tom.User_Management.model.User;
 
 import java.util.List;
 
+
 public interface UserService {
 
     // ABSTRACT METHODS
-    User registerUser(User user);                  // FOR SIGNUP
+    void registerUser(User user);                  // FOR SIGNUP
     User loginUser(String name, String password); // FOR LOGIN
     List<User> getAllUsers();                      // FOR ADMIN OR DASHBOARD
     User getUserByEmail(String email);             // FOR CHECK DUPLICATES

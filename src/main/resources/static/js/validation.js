@@ -11,7 +11,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
 
 
 function validateRegistrationForm() {
-    const username = document.getElementById('username');
+    const username = document.getElementById('userName');
     const email = document.getElementById('email');
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
