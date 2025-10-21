@@ -8,11 +8,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSignupDTO {
+public class UserDTO {
 
 
     @NotBlank(message = "User name can not be empty")
@@ -20,14 +21,15 @@ public class UserSignupDTO {
     private String userName;
 
 
-
     @NotBlank(message = "Email can not be empty")
     @Email(message = "Email should be valid")
     private String email;
 
 
-
     @NotBlank(message = "Password cannot be empty")
     @Size( min = 8, message = "Password must be at least 8 characters long")
     private String password;
+
+
+    private String confirmPassword;
 }

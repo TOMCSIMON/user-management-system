@@ -9,12 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @ToString
-@Table(
-    name = "users",
-    uniqueConstraints = {
-      @UniqueConstraint(columnNames = "username"),
-      @UniqueConstraint(columnNames = "email")
-    })
+@Table(name = "users")
 public class User {
 
   // ENTITY FIELDS
@@ -30,19 +25,14 @@ public class User {
   @Column(unique = true, name = "email") // EMAIL SHOULD UNIQUE
   private String email;
 
-  @Column(nullable = false, name = "password") // PASSWORD SHOULD UNIQUE
+  @Column(nullable = false, name = "password")  // REQUIRED FIELDS
   private String password;
 
 
   // THE @ManyToOne ANNOTATION ESTABLISHES THE RELATIONSHIP
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "role_id", nullable = false) // DEFINES THE FOREIGN KEY COLUMN
+  @JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false) // DEFINES THE FOREIGN KEY COLUMN
   private Role role;
-
-
-  @Transient // EXCLUDED FROM DATABASE PERSISTENCE,
-  // IT WILL NOT BE MAPPED TO A DATABASE COLUMN AND ITS VALUE WILL NOT BE STORED.
-  private String confirmPassword;
 
 
 

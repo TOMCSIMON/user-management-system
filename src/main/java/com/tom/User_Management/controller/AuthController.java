@@ -1,8 +1,9 @@
 package com.tom.User_Management.controller;
 
-import com.tom.User_Management.model.User;
+import com.tom.User_Management.dto.UserDTO;
 import com.tom.User_Management.service.UserService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,59 +14,57 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
-
+@Slf4j
 @Controller // TELLS SPRING THIS CLASS HANDLES WEB REQUESTS AND RETURNS HTML VIEWS
 public class AuthController {
 
-    private final UserService userService;
+  private final UserService userService;
+
+  public AuthController(UserService userService) {
+
+    this.userService = userService;
+  }
+
+  // READ IN CRUD
+  @GetMapping("/signup")
+  public String showSignupPage(Principal principal, Model model) {
+
+    if (principal != null) {
+      return "redirect:/dashboard";
+    }
+    model.addAttribute("user", new UserDTO());
+    return "signup"; // MATCHES signup.html IN /TEMPLATES
+  }
 
 
-    public AuthController(UserService userService) {
+  // READ IN CRUD
+  @GetMapping("/login")
+  public String showLoginPage(Principal principal, Model model) {
 
-        this.userService = userService;
+    if (principal != null) {
+      return "redirect:/dashboard";
+    }
+    return "login";
+  }
+
+
+
+  // CREATE IN CRUD
+  @PostMapping("/register")
+  public String registerUser(
+      @ModelAttribute("user") @Valid UserDTO userDTO,
+      BindingResult bindingResult,
+      Model model,
+      RedirectAttributes redirectAttributes) {
+
+    log.info(">>> Received user from form: {}", userDTO);
+
+    if (bindingResult.hasErrors()) {
+      return "signup";
     }
 
-
-    @GetMapping("/signup")
-    public String ShowSignupPage(Principal principal, Model model) {
-
-        if(principal != null){
-            return "redirect:/dashboard";
-        }
-
-        model.addAttribute("user", new User());
-        return "signup"; // MATCHES signup.html IN /TEMPLATES
-    }
-
-    @GetMapping("/login")
-    public String showLoginPage(Principal principal, Model model) {
-
-        if(principal != null){
-            return "redirect:/dashboard";
-        }
-        return "login"; // MATCHES login.html IN /TEMPLATES
-    }
-
-
-
-
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute ("user") @Valid User user,
-                               BindingResult bindingResult,
-                               Model model,
-                               RedirectAttributes redirectAttributes
-                               ) {
-
-        System.out.println(">>> Received user from form: " + user);
-
-        if(bindingResult.hasErrors()) {
-            return "signup";
-        }
-
-        userService.registerUser(user);
-        redirectAttributes.addFlashAttribute("message" , "Registration successful");
-        return "redirect:/login";
-    }
-
-
+    userService.registerUser(userDTO);
+    redirectAttributes.addFlashAttribute("message", "Registration successful");
+    return "redirect:/login";
+  }
 }

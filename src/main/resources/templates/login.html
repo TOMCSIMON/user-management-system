@@ -9,12 +9,12 @@
 <body>
 <div class="container">
 
-    <p th:if="${param.logout}" class="alert alert-success">
-        You have been successfully logged out.
-    </p>
-
     <form class="login-form" th:action="@{/login}" method="post" >
         <h2>Login in to your account</h2>
+
+        <p th:if="${param.logout}" class="alert alert-success">
+            You have been successfully logged out.
+        </p>
 
         <div class="input-group">
             <label for="username">Username</label>

@@ -28,6 +28,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+
                 .csrf(AbstractHttpConfigurer::disable) // DISABLE CSRF FOR NOW CSRF - CROSS-SITE REQUEST FORGERY
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/signup", "/register", "/login", "/css/**", "/js/**").permitAll() // ALLOW PUBLIC URLS
@@ -42,6 +43,8 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout") // SPECIFYING LOGOUT URL
                         .logoutSuccessUrl("/login?logout=true") // REDIRECT TO /LOGIN WITH LOGOUT PARAMETER AFTER SUCCESSFUL LOGOUT
+                        .invalidateHttpSession(true) // INVALIDATE SESSION
+                        .deleteCookies("JSESSIONID") // Delete session cookie
                         .permitAll()
                 );
 

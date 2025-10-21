@@ -6,22 +6,25 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-
 // USAGE - SPRING JPA HANDLES DATABASE OPERATIONS AUTOMATICALLY, SAVING TIME AND REDUCING ERRORS
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByEmail(String email);
-    Optional<User> findByUserName(String userName);
+  // OPTIONAL INTERFACE USAGE - AVOIDS NULL POINTER EXCEPTIONS
+  Optional<User> findByEmail(String email);
+
+  Optional<User> findByUserName(String userName);
+
+  boolean existsByEmail(String email);
 }
 
-// JpaRepository - IS A SPRING DATA JPA INTERFACE THAT PROVIDES READY-MADE METHODS FOR CRUD operations.
+// JpaRepository - IS A SPRING DATA JPA INTERFACE - PROVIDES READY-MADE METHODS FOR CRUD OPERATIONS.
 // <User> → THE ENTITY TYPE
 // <Long> → THE TYPE OF THE ENTITY’S PRIMARY KEY (userid)
 
-/*  save(User user)     - INSERT OR UPDATE
-    findById(Long id)   - FIND BY PRIMARY KEY
-    findAll()           - GET ALL USERS
-    delete(User user)   - DELETE A USER
-    existsById(Long id) - CHECK IF USER EXISTS
+/*  void save(User user)     - INSERT OR UPDATE
+    user findById(Long id)   - FIND A USER BY PRIMARY KEY
+    list findAll()           - GET ALL USERS
+    void delete(User user)   - DELETE A USER
+    user existsById(Long id) - CHECK IF USER EXISTS IN DB
 */
