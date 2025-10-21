@@ -8,24 +8,37 @@
 </head>
 <body>
 <div class="container">
-    <form class="signup-form" th:action="@{/login}" method="post">
-        <h2>Login to Your Account</h2>
+
+    <p th:if="${param.logout}" class="alert alert-success">
+        You have been successfully logged out.
+    </p>
+
+    <form class="login-form" th:action="@{/login}" method="post" >
+        <h2>Login in to your account</h2>
 
         <div class="input-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required />
+            <input type="text" id="username" name="username"  placeholder="Enter your username" required />
+
         </div>
 
         <div class="input-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required />
+
         </div>
 
+        <p  style="color: red;"  th:if="${param.error}" class="error">Invalid username or password!</p>
+
         <button type="submit" class="btn">Log In</button>
+
 
         <p class="login-link">Don't have an account? <a th:href="@{/signup}" >Sign Up</a></p>
 
     </form>
 </div>
+
+<script type="text/javascript" th:src="@{/js/login-validation.js}"></script>
+
 </body>
 </html>

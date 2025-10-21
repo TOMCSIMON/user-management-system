@@ -3,12 +3,14 @@ package com.tom.User_Management.service;
 import com.tom.User_Management.model.User;
 import com.tom.User_Management.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service // IT WILL AUTOMATICALLY CREATE A BEAN OF THIS CLASS SO CONTROLLERS (OR OTHER SERVICES) CAN INJECT IT.
+@Slf4j
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService {
   public void registerUser(User user) {
 
     System.out.println(">>> registerUser() called with: " + user);
+    log.info(">>> registerUser() called with: " + user.getUserName());
 
     // CHECK FOR EXISTING EMAIL
     userRepository
@@ -39,15 +42,20 @@ public class UserServiceImpl implements UserService {
     user.setPassword(encodedPassword);
 
     // SAVE USER
-    User saved = userRepository.save(user);
-    System.out.println(">>> User saved to DB: " + saved);
+      try {
+          User saved = userRepository.save(user);
+          System.out.println(">>> User saved to DB: " + saved);
+      } catch (Exception e) {
+          throw new RuntimeException(e);
+      }
 
 
   }
 
   @Override
   public User loginUser(String name, String password) {
-    return null;
+
+      return null;
   }
 
   @Override

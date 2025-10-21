@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
+    Optional<User> findByUserName(String userName);
 }
 
 // JpaRepository - IS A SPRING DATA JPA INTERFACE THAT PROVIDES READY-MADE METHODS FOR CRUD operations.

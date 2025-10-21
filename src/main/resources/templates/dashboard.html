@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- DEFINE CHARACTER ENCODING AND RESPONSIVE VIEWPORT -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SET PAGE TITLE -->
+    <title>Welcome Dashboard</title>
+
+    <!-- LINK EXISTING SIGNUP CSS FOR CONSISTENT STYLING -->
+    <link rel="stylesheet" th:href="@{/css/signup.css}"/>
+
+</head>
+<body>
+
+<!-- MAIN CONTAINER FOR CENTERED CONTENT -->
+<div class="container">
+
+    <!-- DASHBOARD HEADING -->
+    <h2 style="text-align: center;">Welcome, <span th:text="${username}"></span></h2>
+
+    <!-- SUCCESS MESSAGE -->
+    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 1rem; color: #333;">
+        You have successfully logged in.
+    </p>
+
+    <!-- OPTIONAL LINKS OR BUTTONS FOR USER ACTIONS -->
+    <div class="input-group" style="text-align: center;">
+        <form th:action="@{/logout}" method="post">
+            <!-- LOGOUT BUTTON USING SPRING SECURITY DEFAULT LOGOUT -->
+            <button th:href="@{/logout}" class="btn" style="display: inline-block; margin-bottom: 1rem;">Log Out
+            </button>
+        </form>
+        <!-- OPTIONAL PROFILE PAGE -->
+
+    </div>
+
+</div>
+
+</body>
+</html>

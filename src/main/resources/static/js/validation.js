@@ -1,16 +1,16 @@
 
 
 
-// Attach the validation function to the form's submit event
+// ATTACH THE VALIDATION FUNCTION TO THE FORM'S SUBMIT EVENT
 document.getElementById('signup-form').addEventListener('submit', function(event) {
     if (!validateRegistrationForm()) {
-        event.preventDefault(); // Prevent form submission if validation fails
+        event.preventDefault(); // PREVENT FORM SUBMISSION IF VALIDATION FAILS
     }
 });
 
 
-
 function validateRegistrationForm() {
+
     const username = document.getElementById('userName');
     const email = document.getElementById('email');
     const password = document.getElementById('password');
@@ -18,7 +18,7 @@ function validateRegistrationForm() {
 
     let isValid = true;
 
-    // Validate Username
+    // VALIDATE USERNAME
     if (username.value.trim() === '') {
         alert('Username cannot be empty.');
         isValid = false;
@@ -27,7 +27,7 @@ function validateRegistrationForm() {
         isValid = false;
     }
 
-    // Validate Email
+    // VALIDATE EMAIL
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.value.trim() === '') {
         alert('Email cannot be empty.');
@@ -37,18 +37,18 @@ function validateRegistrationForm() {
         isValid = false;
     }
 
-    // Validate Password
+    // VALIDATE PASSWORD
     if (password.value.length < 8) {
         alert('Password must be at least 8 characters long.');
         isValid = false;
     }
 
-    // Validate Confirm Password
+    // VALIDATE CONFIRM PASSWORD
     if (password.value !== confirmPassword.value) {
         alert('Passwords do not match.');
         isValid = false;
     }
 
-    return isValid; // Return true if all validations pass, false otherwise
+    return isValid; // RETURN TRUE IF ALL VALIDATIONS PASS, FALSE OTHERWISE
 }
 

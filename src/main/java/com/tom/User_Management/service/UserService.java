@@ -9,7 +9,7 @@ public interface UserService {
 
     // ABSTRACT METHODS
     void registerUser(User user);                  // FOR SIGNUP
-    User loginUser(String name, String password); // FOR LOGIN
+    User loginUser(String name, String password);  // FOR LOGIN
     List<User> getAllUsers();                      // FOR ADMIN OR DASHBOARD
     User getUserByEmail(String email);             // FOR CHECK DUPLICATES
     void deleteUser(Long id);
