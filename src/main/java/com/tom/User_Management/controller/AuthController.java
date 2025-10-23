@@ -47,6 +47,20 @@ public class AuthController {
     return "login";
   }
 
+    // READ IN CRUD
+    @GetMapping("/dashboard")
+    public String showDashboard(Model model, Principal principal) {
+
+        if (principal != null) {
+            model.addAttribute("username", principal.getName());
+        }
+        else {
+            model.addAttribute("username", "Guest");
+        }
+
+        return "dashboard";
+    }
+
 
 
   // CREATE IN CRUD

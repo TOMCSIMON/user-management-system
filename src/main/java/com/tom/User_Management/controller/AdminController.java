@@ -11,6 +11,34 @@ import java.security.Principal;
 public class AdminController {
 
 
+    // READ IN CRUD
+    @GetMapping("/admin-login")
+    public String showAdminLoginPage(Model model, Principal principal) {
+
+        if (principal != null) {
+            model.addAttribute("username", principal.getName());
+        }
+        else {
+            model.addAttribute("username", "Guest");
+        }
+
+        return "admin-login";
+    }
+
+
+    // READ IN CRUD
+    @GetMapping("/admin-dashboard")
+    public String showAdminDashboard(Model model, Principal principal) {
+
+        if (principal != null) {
+            model.addAttribute("username", principal.getName());
+        }
+        else {
+            model.addAttribute("username", "Guest");
+        }
+
+        return "admin-dashboard";
+    }
 
 
 

@@ -30,8 +30,8 @@ public class SecurityConfig {
         http
 
                 .csrf(AbstractHttpConfigurer::disable) // DISABLE CSRF FOR NOW CSRF - CROSS-SITE REQUEST FORGERY
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/signup", "/register", "/login", "/css/**", "/js/**").permitAll() // ALLOW PUBLIC URLS
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/signup", "/register", "/login","/admin-login", "/css/**", "/js/**").permitAll() // ALLOW PUBLIC URLS
                         .anyRequest().authenticated() // REQUIRE AUTHENTICATION FOR ALL OTHER REQUESTS
                 )
                 .formLogin(form -> form // FORM BASED LOGIN
@@ -49,6 +49,7 @@ public class SecurityConfig {
                 );
 
         return http.build();
+
     }
 
 

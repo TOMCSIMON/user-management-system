@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class    UserDTO {
 
 
     @NotBlank(message = "User name can not be empty")
