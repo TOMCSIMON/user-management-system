@@ -14,8 +14,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
+// HANDLES USER AUTHENTICATION, REGISTRATION, AND DASHBOARD PAGE ROUTING.
+
 @Slf4j
-@Controller // TELLS SPRING THIS CLASS HANDLES WEB REQUESTS AND RETURNS HTML VIEWS
+@Controller("/api") // TELLS SPRING THIS CLASS HANDLES WEB REQUESTS AND RETURNS HTML VIEWS
 public class AuthController {
 
   private final UserService userService;
