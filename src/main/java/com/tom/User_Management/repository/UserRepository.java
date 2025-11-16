@@ -4,8 +4,6 @@ import com.tom.User_Management.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 import java.util.Optional;
 
 // USAGE - SPRING JPA HANDLES DATABASE OPERATIONS AUTOMATICALLY, SAVING TIME AND REDUCING ERRORS

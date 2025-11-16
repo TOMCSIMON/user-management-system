@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-
 // THIS CLASS CONFIGURES SPRING SECURITY FOR THE APPLICATION — DEFINES LOGIN, LOGOUT AND ACCESS RULES.
 
 @Configuration
@@ -34,23 +33,26 @@ public class SecurityConfig {
             AbstractHttpConfigurer
                 ::disable) // DISABLE CSRF FOR NOW CSRF - CROSS-SITE REQUEST FORGERY
         .authorizeHttpRequests(
-            auth ->
-                auth.requestMatchers(
-                        "/signup", "/register", "/login", "/admin-login", "/css/**", "/js/**")
-                    .permitAll() // ALLOW PUBLIC URLS
-                    .anyRequest()
-                    .authenticated() // REQUIRE AUTHENTICATION FOR ALL OTHER REQUESTS
+            auth -> auth
+                    .requestMatchers("/signup", "/register", "/login", "/css/**", "/js/**").permitAll() // ALLOW PUBLIC URLS
+                    .requestMatchers("/adduser").hasRole("ADMIN")
+                    .anyRequest().authenticated() // REQUIRE AUTHENTICATION FOR ALL OTHER REQUESTS
             )
         .formLogin(
-            form -> form // FORM BASED LOGIN
+            form ->
+                form // FORM BASED LOGIN
                     .loginPage("/login") // CUSTOM LOGIN PAGE URL
-                    .successHandler(customAuthenticationSuccessHandler) // HANDLES REDIRECTION BASED ON ROLES
+                    .successHandler(
+                        customAuthenticationSuccessHandler) // HANDLES REDIRECTION BASED ON ROLES
                     .failureUrl("/login?error=true") // REDIRECT TO LOGIN PAGE IF LOGIN FAILS
                     .permitAll())
         .logout(
-            logout -> logout
+            logout ->
+                logout
                     .logoutUrl("/logout") // SPECIFYING LOGOUT URL
-                    .logoutSuccessUrl("/login?logout=true") // REDIRECT TO /LOGIN WITH LOGOUT PARAMETER AFTER SUCCESSFUL LOGOUT
+                    .logoutSuccessUrl(
+                        "/login?logout=true") // REDIRECT TO /LOGIN WITH LOGOUT PARAMETER AFTER
+                                              // SUCCESSFUL LOGOUT
                     .invalidateHttpSession(true) // INVALIDATE SESSION
                     .deleteCookies("JSESSIONID") // Delete session cookie
                     .permitAll());
@@ -58,8 +60,6 @@ public class SecurityConfig {
     return http.build();
   }
 }
-
-
 
 /*
  SecurityConfig class defines the Spring Security configuration for the application.

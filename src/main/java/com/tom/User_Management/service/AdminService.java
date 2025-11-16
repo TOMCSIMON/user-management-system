@@ -1,6 +1,9 @@
 package com.tom.User_Management.service;
 
+import com.tom.User_Management.dto.UpdateUserDTO;
+import com.tom.User_Management.dto.UserDTO;
 import com.tom.User_Management.model.User;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -21,5 +24,11 @@ public interface AdminService {
   // FOR DELETING USER
   void deleteUser(Long id);
 
+  // FOR PAGINATED USER LIST IN ADMIN-DASHBOARD
   Page<User> getUsersPaginated(int page, int size);
+
+  UserDTO getUserById(Long id);
+
+  void updateUser(Long id, @Valid UpdateUserDTO UpdateUserserDTO);
+
 }
