@@ -62,7 +62,9 @@ public class AdminController {
   // DELETE IN CRUD
   @GetMapping("/delete/{id}")
   public String deleteUser(
-      @PathVariable("id") Long id, Principal principal, RedirectAttributes redirectAttributes) {
+      @PathVariable("id") Long id,
+      Principal principal,
+      RedirectAttributes redirectAttributes) {
 
     User currentUser = adminService.getUserByName(principal.getName());
 

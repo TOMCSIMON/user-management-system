@@ -50,9 +50,7 @@ public class SecurityConfig {
             logout ->
                 logout
                     .logoutUrl("/logout") // SPECIFYING LOGOUT URL
-                    .logoutSuccessUrl(
-                        "/login?logout=true") // REDIRECT TO /LOGIN WITH LOGOUT PARAMETER AFTER
-                                              // SUCCESSFUL LOGOUT
+                    .logoutSuccessUrl("/login?logout=true") // REDIRECT TO LOGIN WITH LOGOUT PARAMETER AFTER SUCCESSFUL LOGOUT
                     .invalidateHttpSession(true) // INVALIDATE SESSION
                     .deleteCookies("JSESSIONID") // Delete session cookie
                     .permitAll());

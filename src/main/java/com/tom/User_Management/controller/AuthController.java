@@ -29,7 +29,10 @@ public class AuthController {
 
   // READ IN CRUD
   @GetMapping("/signup")
-  public String showSignupPage(Principal principal, Model model) {
+  public String showSignupPage(
+          Principal principal,
+          Model model)
+  {
 
     if (principal != null) {
       return "redirect:/dashboard";
@@ -70,7 +73,6 @@ public class AuthController {
   public String registerUser(
       @ModelAttribute("user") @Valid UserDTO userDTO,
       BindingResult bindingResult,
-      Model model,
       RedirectAttributes redirectAttributes) {
 
     log.info(">>> Received user from form: {}", userDTO);

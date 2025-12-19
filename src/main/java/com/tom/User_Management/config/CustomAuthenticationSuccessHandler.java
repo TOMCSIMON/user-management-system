@@ -26,7 +26,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
       // EXTRACT USER ROLES (AUTHORITIES) FROM AUTHENTICATION OBJECT
       List<String> roles = authentication.getAuthorities()
               .stream()
-              .map(authority -> authority.getAuthority())// CONVERT EACH ROLE TO STRING
+              .map(GrantedAuthority::getAuthority)// CONVERT EACH ROLE TO STRING
               .toList();
 
       // REDIRECT BASED ON ROLE

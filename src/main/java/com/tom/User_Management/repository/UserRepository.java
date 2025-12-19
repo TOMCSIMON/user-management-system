@@ -24,13 +24,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
   boolean existsByEmail(String email);
 }
 
-// JpaRepository - IS A SPRING DATA JPA INTERFACE - PROVIDES READY-MADE METHODS FOR CRUD OPERATIONS.
-// <User> → THE ENTITY TYPE
-// <Long> → THE TYPE OF THE ENTITY’S PRIMARY KEY (userid)
 
-/*  void save(User user)     - INSERT OR UPDATE
-    user findById(Long id)   - FIND A USER BY PRIMARY KEY
-    list findAll()           - GET ALL USERS
-    void delete(User user)   - DELETE A USER
-    user existsById(Long id) - CHECK IF USER EXISTS IN DB
-*/

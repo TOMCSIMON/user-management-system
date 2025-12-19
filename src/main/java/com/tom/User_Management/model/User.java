@@ -30,7 +30,7 @@ public class User {
 
 
   // THE @ManyToOne ANNOTATION ESTABLISHES THE RELATIONSHIP
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
   @JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false) // DEFINES THE FOREIGN KEY COLUMN
   private Role role;
 
